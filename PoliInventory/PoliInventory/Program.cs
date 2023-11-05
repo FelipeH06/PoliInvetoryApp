@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using PoliInventory.Infrastructure.Configuration;
+
 namespace PoliInventory
 {
     public class Program
@@ -6,6 +9,10 @@ namespace PoliInventory
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            IConfiguration configuration = builder.Configuration;
+
+            // Add DbContext
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("Database")));
             // Add services to the container.
 
             builder.Services.AddControllers();
