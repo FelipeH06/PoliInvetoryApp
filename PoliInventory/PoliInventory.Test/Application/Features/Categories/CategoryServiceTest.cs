@@ -6,9 +6,6 @@ using PoliInventory.Application.Interfaces;
 using PoliInventory.Application.Mappings;
 using PoliInventory.Domain.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -16,6 +13,9 @@ namespace PoliInventory.Test.Application.Features.Categories
 {
     public class CategoryServiceTest
     {
+        /// <summary>
+        /// Mock of category repository
+        /// </summary>
         public Mock<IGenericRepository<CategoryEntity>> _categoryRepositoryMock = new Mock<IGenericRepository<CategoryEntity>>();
 
         [Fact]
