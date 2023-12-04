@@ -9,4 +9,4 @@ install:
 
 script:
  - dotnet build ./PoliInventory/PoliInventory.sln
- - dotnet test 
+ - dotnet test ./PoliInventory/PoliInventory.sln
