@@ -1,0 +1,12 @@
+language: csharp
+sudo: required
+mono: none 
+solution: ./PoliInventory/PoliInventory.sln
+dotnet: 6.0
+
+install:
+- dotnet restore ./PoliInventory/PoliInventory.sln
+
+script:
+ - dotnet build ./PoliInventory/PoliInventory.sln
+ - dotnet test ./PoliInventory/PoliInventory.sln
