@@ -31,7 +31,7 @@ namespace PoliInventory.Test.Application.Features.Categories
                 State = true
             });
 
-            //auto mapper configuration
+            // auto mapper configuration
             MapperConfiguration? mockMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMapperProfile());
@@ -61,7 +61,7 @@ namespace PoliInventory.Test.Application.Features.Categories
                 State = true
             });
 
-            //auto mapper configuration
+            // auto mapper configuration
             MapperConfiguration? mockMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new AutoMapperProfile());
