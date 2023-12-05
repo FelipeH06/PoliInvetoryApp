@@ -1,0 +1,11 @@
+# Ejemplo codeship-steps.yml
+
+- name: build
+  service: app
+  command: 
+    - dotnet restore
+    - dotnet build
+
+- name: test
+  service: app
+  command: dotnet test
