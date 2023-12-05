@@ -14,18 +14,18 @@ jobs:
         uses: cloudbees-io/checkout@v1
 
       - name: Install .NET Core SDK
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 6.0.0
 
       - name: Build application
-        uses: actions/dotnet/build@v1
+        uses: actions/dotnet/build@v2
         with:
           project: MyApp.csproj
           arguments: --configuration Release
 
       - name: Run unit tests
-        uses: actions/dotnet/test@v1
+        uses: actions/dotnet/test@v2
         with:
           project: MyApp.csproj
           arguments: --configuration Release
