@@ -1,37 +1,29 @@
 apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: Build .NET Core App
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build:
     steps:
-      - name: Checkout repository
-        uses: cloudbees-io/checkout@v1
-
-      - name: Install .NET Core SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.0
-
-      - name: Build application
-        uses: actions/dotnet/build@v2
+      - uses: cloudbees-io/checkout@v1
+        name: Checkout repository
+      - uses: actions/setup-dotnet@v
+        name: Install .NET Core SDK
+      - uses: actions/dotnet/build@v2
+        name: Build application
         with:
           project: MyApp.csproj
           arguments: --configuration Release
-
-      - name: Run unit tests
-        uses: actions/dotnet/test@v2
+      - uses: actions/dotnet/test@v2
+        name: Run unit tests
         with:
           project: MyApp.csproj
           arguments: --configuration Release
-
-      - name: Archive artifacts
-        uses: actions/upload-artifacts@v2
+      - uses: actions/upload-artifacts@v2
+        name: Archive artifacts
         with:
           name: artifacts
           path: bin/Release/net6.0
