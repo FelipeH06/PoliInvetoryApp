@@ -11,7 +11,7 @@ jobs:
   build:
     steps:
       - name: Checkout repository
-        uses: actions/git-checkout@v3
+        uses: actions/checkout@v
 
       - name: Install .NET Core SDK
         uses: actions/setup-dotnet@v1
