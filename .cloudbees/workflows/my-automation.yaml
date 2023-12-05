@@ -1,17 +1,33 @@
-apiVersion: automation.cloudbees.io/v1alpha1
-kind: workflow
-name: My automation
+# Este archivo define un workflow de build para una aplicación .NET Core
+
+name: Build .NET Core App
 
 on:
   push:
     branches:
-      - '**'
+      - main
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
-      - name: App
-        uses: mcr.microsoft.com/dotnet/core/sdk:6.0
-        shell: sh
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install .NET Core SDK
         run: |
-          echo "hello world"
+          sudo apt-get update
+          sudo apt-get install -y dotnet-sdk-6.0
+
+      - name: Build application
+        run: dotnet build
+
+      - name: Run unit tests
+        run: dotnet test
+
+      - name: Archive artifacts
+        uses: actions/upload-artifacts@v2
+        with:
+          name: artifacts
+          path: bin/Release/net6.0
+
