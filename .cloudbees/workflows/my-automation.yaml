@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My automation
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    steps:
+      - name: App
+        uses: mcr.microsoft.com/dotnet/core/sdk:6.0
+        shell: sh
+        run: |
+          echo "hello world"
