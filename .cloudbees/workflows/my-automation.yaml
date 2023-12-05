@@ -1,17 +1,36 @@
-apiVersion: automation.cloudbees.io/v1alpha1
-kind: workflow
-name: My automation
+name: Build .NET Core App
 
 on:
   push:
     branches:
-      - '**'
+      - main
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Say hello
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: |
-          echo "hello world"
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.0
+
+      - name: Build application
+        uses: actions/dotnet/build@v1
+        with:
+          project: MyApp.csproj
+          arguments: --configuration Release
+
+      - name: Run unit tests
+        uses: actions/dotnet/test@v1
+        with:
+          project: MyApp.csproj
+          arguments: --configuration Release
+
+      - name: Archive artifacts
+        uses: actions/upload-artifacts@v2
+        with:
+          name: artifacts
+          path: bin/Release/net6.0
